@@ -1,0 +1,27 @@
+dsh-due-diligence
+Copyright (c) 2026 dsh-due-diligence contributors
+
+This project is licensed under the MIT License; see LICENSE.
+
+Third-party material
+--------------------
+
+Sherlock
+- Project: https://github.com/sherlock-project/sherlock
+- License: MIT, Copyright (c) 2019 Sherlock Project
+- Bundled material: data/sherlock-sites.json and data/false-positive-exclusions.txt
+- Adapted material: username-discovery judgment logic in lib/sherlock-engine.mjs
+- Upstream snapshot: v0.16.2, commit c588d7c8b476df9f9c84912a05d1430fb8cdcdae
+- Full notice: data/SHERLOCK-LICENSE.txt
+
+Public data services
+--------------------
+
+GLEIF, SEC EDGAR, Wikidata, crt.sh, the Internet Archive Wayback Machine and
+RDAP are queried over their public interfaces. No service code or proprietary
+dataset is bundled except the Sherlock files listed above. Their data and
+brands remain subject to their respective owners' terms.
+
+The plugin does not scrape LinkedIn, X/Twitter, Instagram, Facebook, GSXT,
+Tianyancha, Qichacha, Aiqicha or Chinese court-document sites. Where useful,
+it returns deep links for the user to open manually.

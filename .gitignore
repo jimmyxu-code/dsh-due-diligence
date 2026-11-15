@@ -1,0 +1,28 @@
+# Dependencies and generated packages
+node_modules/
+*.tgz
+
+# Test/build output
+coverage/
+dist/
+.nyc_output/
+
+# Logs and OS files
+*.log
+.DS_Store
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+
+# Reports and acceptance artifacts (may contain personal data)
+背调报告/
+reports/
+acceptance/
+验收/
+*.report.md
+
+# Editor state
+.vscode/
+.idea/

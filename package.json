@@ -1,0 +1,62 @@
+{
+  "name": "dsh-due-diligence",
+  "version": "0.2.1",
+  "type": "module",
+  "description": "Open-source due-diligence agent preset for DeepSeek Harness: people profiles, companies, domains and usernames with evidence and Markdown reports.",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "lib/*.mjs",
+    "data/*",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "README.zh.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "NOTICE",
+    "docs"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check index.js && node --check lib/tool-defs.mjs",
+    "check:all": "node --check index.js && for file in lib/*.mjs test/*.mjs; do node --check \"$file\" || exit 1; done",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "osint",
+    "due-diligence",
+    "research",
+    "sherlock"
+  ],
+  "author": "jimmyxu-code",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmyxu-code/dsh-due-diligence.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jimmyxu-code/dsh-due-diligence/issues"
+  },
+  "homepage": "https://github.com/jimmyxu-code/dsh-due-diligence#readme",
+  "engines": {
+    "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

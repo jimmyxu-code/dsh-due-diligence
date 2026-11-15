@@ -1,0 +1,66 @@
+================================================================================
+dsh-due-diligence · 第三方数据来源与许可声明
+================================================================================
+
+本目录（data/）里的 sherlock 相关数据来自 Sherlock 项目，按其 MIT License
+再分发。以下逐项说明来源，随后附原始 MIT 许可全文。
+
+--------------------------------------------------------------------------------
+1) data/sherlock-sites.json
+--------------------------------------------------------------------------------
+- 来源仓库：https://github.com/sherlock-project/sherlock
+- 原始路径：sherlock_project/resources/data.json
+- 版本：v0.16.2，commit c588d7c8b476df9f9c84912a05d1430fb8cdcdae
+  （提交日期 2026-11-01；本插件 2026-11-07 快照）
+- 内容：481 个站点的用户名探测规则（url、urlMain、errorType、errorMsg、
+  errorCode、regexCheck、urlProbe、request_method、request_payload、headers、
+  isNSFW、username_claimed 等字段）。
+- 本插件只做只读使用：Node 原生引擎按这些规则发起探测，不修改原始文件；
+  文件内容与上游 data.json 逐字节一致（含 "$schema" 键，加载时忽略）。
+- 上游说明：data.json 的实际权威数据托管于 https://data.sherlockproject.xyz，
+  本插件固定使用 v0.16.2 快照以保证可复现，不联网拉取最新清单。
+
+--------------------------------------------------------------------------------
+2) data/false-positive-exclusions.txt
+--------------------------------------------------------------------------------
+- 来源：Sherlock 项目 exclusions 分支的误报排除名单
+  https://raw.githubusercontent.com/sherlock-project/sherlock/refs/heads/exclusions/false_positive_exclusions.txt
+- commit 快照：c588d7c（2026-11-07 取回时为 45 行，每行一个站点名）
+- 用途：默认从扫描目标中剔除这些“容易出现误报”的站点（例如 Reddit、
+  DeviantArt、Spotify、TikTok 等），与 Sherlock 的 `--ignore-exclusions`
+  默认行为保持一致；用户显式指定 site 时对这些站点放行。
+- 上游该名单以数据文件形式随 Sherlock 项目分发，本插件将其作为数据快照内置，
+  不联网更新。
+
+--------------------------------------------------------------------------------
+3) 判定逻辑移植说明
+--------------------------------------------------------------------------------
+- lib/sherlock-engine.mjs 是 Sherlock（sherlock_project/sherlock.py，MIT）判定
+  逻辑的 Node 重写：站点筛选、三种 errorType 判定、WAF 指纹、headers/urlProbe/
+  request_method 支持等尽量与 Python 版一致，具体差异写在该文件头部注释。
+- 本插件不包含 Sherlock 的 Python 代码，只复用其数据与判定思路。
+
+--------------------------------------------------------------------------------
+4) MIT License（Sherlock 项目原始许可）
+--------------------------------------------------------------------------------
+MIT License
+
+Copyright (c) 2019 Sherlock Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
